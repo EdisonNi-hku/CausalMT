@@ -21,10 +21,10 @@ ant_dir=${second}-${frist}
 cau_dir=${frist}-${second}
 
 src_tgt=${src}-${tgt}
-st_folder1=data/run_nmt/ssl/all_50-50_${first}-${second}_ssl1
-st_folder2=data/run_nmt/ssl/all_50-50_${second}-${first}_ssl1
-bt_folder1=data/run_nmt/ssl/all_50-50_${first}-${second}_ssl4
-bt_folder2=data/run_nmt/ssl/all_50-50_${second}-${first}_ssl4
+st_folder1=data/run_nmt/ssl/all_50_50_${first}-${second}_ssl1
+st_folder2=data/run_nmt/ssl/all_50_50_${second}-${first}_ssl1
+bt_folder1=data/run_nmt/ssl/all_50_50_${first}-${second}_ssl4
+bt_folder2=data/run_nmt/ssl/all_50_50_${second}-${first}_ssl4
 st_bpe1=$st_folder1/bpe
 bt_bpe1=$bt_folder1/bpe
 st_bpe2=$st_folder2/bpe
