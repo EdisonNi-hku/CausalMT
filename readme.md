@@ -32,14 +32,14 @@ To run the supervised experiments, the first step is to prepare the supervised t
 bash code/supervise_mix.sh 0 100 0 0 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 75 25 0 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 50 50 0 0 data/bpe_datasets
-bash code/supervise_mix.sh 0 75 25 0 0 data/bpe_datasets
+bash code/supervise_mix.sh 0 25 75 0 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 0 100 0 0 data/bpe_datasets
 
 # Translation from Es to En
 bash code/supervise_mix.sh 0 100 0 1 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 75 25 1 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 50 50 1 0 data/bpe_datasets
-bash code/supervise_mix.sh 0 75 25 1 0 data/bpe_datasets
+bash code/supervise_mix.sh 0 25 75 1 0 data/bpe_datasets
 bash code/supervise_mix.sh 0 0 100 1 0 data/bpe_datasets
 ```
 Here, `bash code/supervise_mix.sh {lang_ix} {cau_ratio} {ant_ratio} {mt_dir} {if_ssl} {dataset}`
