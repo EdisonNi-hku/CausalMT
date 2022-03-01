@@ -54,7 +54,7 @@ The commands will make directories like `data/run_nmt/ssl/all_100_0_en-es_ssl0`
 The next step is to run the experiments
 ```
 # Supervised MT, translate from en to es, data constituent: `en-to-es`:`es-to-en`=100:0
-bash code/script_ssl_bt_conf.sh 0 100-0 0 0 1 0,1,2,3,4,5,6,7
+bash code/script_ssl_bt_conf.sh 0 100_0 0 0 1 0,1,2,3,4,5,6,7
 ```
 Here, `bash code/script_ssl_bt_conf.sh {lang_ix} {directory} {mt_dir} {if_ssl} {hyp} {CUDA_VISIBLE_DEVICES}`
 - `lang_ix` (language pair index) can be `0` (en-es), `1` (es-fr), `2` (en-fr), `3` (de-en), `4` (de-fr)
