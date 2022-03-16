@@ -71,7 +71,7 @@ dropout=0.3
 
 
 # Prepare the data folder for self training by copying from the DAE folder
-FOLDER0=data/run_nmt/ssl/all_${ratio}_${src_tgt}_ssl0
+#FOLDER0=data/run_nmt/ssl/all_${ratio}_${src_tgt}_ssl0
 FOLDER1=data/run_nmt/ssl/all_${ratio}_${src_tgt}_ssl1
 FOLDER2=data/run_nmt/ssl/all_${ratio}_${src_tgt}_ssl2
 <<!
@@ -86,13 +86,13 @@ esac
 
 if [ $prep_data_from_ssl1 = 2 ]; then
     # Binarize the dataset
-    if [ ! -f $FOLDER0/data-bin/train.${src_tgt}.${src}.bin ]; then
-        rm $FOLDER0/data-bin/* 2>/dev/null || true
+    if [ ! -f $FOLDER1/data-bin/train.${src_tgt}.${src}.bin ]; then
+        rm $FOLDER1/data-bin/* 2>/dev/null || true
         CUDA_VISIBLE_DEVICES=$gpu fairseq-preprocess \
             --joined-dictionary \
             --source-lang $src --target-lang $tgt \
-            --trainpref $FOLDER0/bpe/train --validpref $FOLDER0/bpe/valid --testpref $FOLDER0/bpe/test \
-            --destdir $FOLDER0/data-bin --thresholdtgt 0 --thresholdsrc 0 \
+            --trainpref $FOLDER1/bpe/train --validpref $FOLDER1/bpe/valid --testpref $FOLDER1/bpe/cau_test \
+            --destdir $FOLDER1/data-bin --thresholdtgt 0 --thresholdsrc 0 \
             --workers 20
     fi
 fi
@@ -100,7 +100,7 @@ fi
 if [ $prep_data_from_ssl1 -ge 1 ]; then
     mkdir -p $FOLDER2/bpe/ $FOLDER2/ckpt_arch0_hyp0_ep1000/  || true
     cp $FOLDER1/bpe/unsup.${src} $FOLDER2/bpe/unsup.${src}
-    cp -a $FOLDER0/data-bin/ $FOLDER2/
+    cp -a $FOLDER1/data-bin/ $FOLDER2/
 fi
 
 BPE_DIR=$FOLDER2/bpe
@@ -175,7 +175,7 @@ fi
 # ---- back translate ---- #
 if [ $backtranslate = 1 ]; then
     model_path=${SAVE}/checkpoint_best.pt
-#    model_path=$FOLDER0/ckpt_arch0_hyp0_ep1000/checkpoint_best.pt
+#    model_path=$FOLDER1/ckpt_arch0_hyp0_ep1000/checkpoint_best.pt
     bt_file=$CKPT_DIR/unsup_bt.${tgt}
 
     cmd="cat ${BPE_DIR}/unsup.${src} | \

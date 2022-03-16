@@ -95,6 +95,8 @@ cat $forward_folder_ckpt/hypothesis.txt
 
 echo "Test set translation outputs saved to $forward_folder_ckpt/hypothesis.txt"
 
+cont_arg=""
+cont_tee=""
 # Train reverse model
 if [ $reverse_continue_train == 1 ]; then
     cont_arg="--restore-file $reverse_folder_ckpt/checkpoint_last.pt "
@@ -199,9 +201,9 @@ done
 final_folder_ckpt=$folder/ckpt_bt_hyp${tune_hyper}_final
 final_continue_train=0
 
+cont_arg=""
+cont_tee=""
 if [ $final_continue_train == 1 ]; then
-    cont_arg="--restore-file $final_folder_ckpt/checkpoint_last.pt "
-    cont_arg="--restore-file $final_folder_ckpt/checkpoint_last.pt "
     cont_arg="--restore-file $final_folder_ckpt/checkpoint_last.pt "
     cont_tee="-a "
 else
